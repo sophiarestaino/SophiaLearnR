@@ -1,6 +1,6 @@
-name: "MyLabJournal"
+name: "Sophia Site"
 navbar:
-  title: "MyLabJournal"
+  title: "Sophia Site"
   left:
     - text: "Home"
       href: index.html
