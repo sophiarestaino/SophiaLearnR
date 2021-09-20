@@ -12,7 +12,7 @@
 
 
 
-<title>SophiaTest</title>
+<title>Assignments</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,6 +20,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -248,6 +251,63 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -255,6 +315,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -292,40 +362,138 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">SophiaTest</h1>
+<h1 class="title toc-ignore">Assignments</h1>
 
 </div>
 
 
-<style type="text/css">
-.title {
-  display: none;
-}
-
-#getting-started img {
-  margin-right: 10px;
-}
-
-</style>
-<div class="row" style="padding-top: 30px;">
-<div class="col-sm-6">
-<h1 id="my-lab-journal"><strong>My Lab Journal</strong></h1>
-<p>This is a template example for lab journaling. Students in Matt Crump’s Human Cognition and Performance Lab will use this template to learn R, and other things. Students can replace this text with more fun things. People not in my lab can use this too.</p>
-<h2 id="how-to-use">How to use</h2>
+<p>This page will contain all the assignments you submit for the class.</p>
+<div id="instructions-for-all-assignments" class="section level3">
+<h3>Instructions for all assignments</h3>
+<p>I want you to submit your assignment as a PDF, so I can keep a record of what the code looked like that day. I also want you to include your answers on your personal GitHub website. This will be good practice for editing your website and it will help you produce something you can keep after the class is over.</p>
 <ol style="list-style-type: decimal">
-<li><p>fork the repo for this website and follow instructions on read me to get set up. <a href="https://github.com/CrumpLab/LabJournalWebsite">https://github.com/CrumpLab/LabJournalWebsite</a></p></li>
-<li><p>Blog/journal what you are doing in R, by editing the Journal.Rmd. See the <a href="https://crumplab.github.io/LabJournalWebsite/Journal.html">Journal page</a> for an example of what to do to get started learning R.</p></li>
-<li><p>See the <a href="https://crumplab.github.io/LabJournalWebsite/Links.html">links page</a> for lots of helpful links on learning R.</p></li>
-<li><p>Change everything to make it your own.</p></li>
+<li><p>Download the Assignment1.Rmd file from Canvas. You can use this as a template for writing your answers. It’s the same as what you can see on my website in the Assignments tab. Once we’re done with this I’ll edit the text on the website to include the solutions.</p></li>
+<li><p>On RStudio, open a new R script in RStudio (File &gt; New File &gt; R Script). This is where you can test out your R code. You’ll write your R commands and draw plots here.</p></li>
+<li><p>Once you have finalized your code, copy and paste your results into this template (Assignment 1.Rmd). For example, if you produced a plot as the solution to one of the problems, you can copy and paste the R code in R markdown by using the <code>``{r} ```</code> command. Answer the questions in full sentences and Save.</p></li>
+<li><p>Produce a PDF file with your answers. To do this, knit to PDF (use Knit button at the top of RStudio), locate the PDF file in your docs folder (it’s in the same folder as the Rproj), and submit that on on Canvas in Assignment 1.</p></li>
+<li><p>Build Website, go to GitHub desktop, commit and push. Now your solutions should be on your website as well.</p></li>
 </ol>
 </div>
-<div class="col-sm-6">
-<h3 id="crump-lab-human-cognition-and-performance"><a href="https://crumplab.github.io">Crump Lab: Human Cognition and Performance</a></h3>
-<p><a href = "https://crumplab.github.io"> <img src="images/logo.png" /> </a></p>
+<div id="assignment-1" class="section level1">
+<h1>Assignment 1</h1>
+<p><strong>Collaborators: Natalie Yang. </strong></p>
+<p>This assignment is due on Canvas on Monday 9/20 before class, at 10:15 am. Include the name of anyone with whom you collaborated at the top of the assignment.</p>
+<div id="problem-1" class="section level3">
+<h3>Problem 1</h3>
+<p>Install the datasets package on the console below using <code>install.packages(&quot;datasets&quot;)</code>. Now load the library.</p>
+<pre class="r"><code>library(datasets)</code></pre>
+<p>Load the USArrests dataset and rename it <code>dat</code>. Note that this dataset comes with R, in the package datasets, so there’s no need to load data from your computer. Why is it useful to rename the dataset?</p>
+<pre class="r"><code>dat &lt;- USArrests</code></pre>
+<div id="its-useful-to-rename-the-dataset-so-you-know-can-keep-track-of-which-dataset-is-which---it-can-stick-in-your-mind-more-if-you-rename-it.-also-when-youre-altering-data-its-best-to-keep-track-of-the-different-versions-are-which-ie-which-datasets-are-untouched-etc.-lastly-i-wouldnt-want-to-alter-a-base-r-package-dataset-and-then-save-it-to-my-workspace-and-have-that-alter-things-in-the-future." class="section level4">
+<h4>It’s useful to rename the dataset so you know can keep track of which dataset is which - it can stick in your mind more if you rename it. Also, when you’re altering data, it’s best to keep track of the different versions are which (ie which datasets are untouched, etc). Lastly, I wouldn’t want to alter a Base R package dataset, and then save it to my workspace, and have that alter things in the future.</h4>
+</div>
+</div>
+<div id="problem-2" class="section level3">
+<h3>Problem 2</h3>
+<p>Use this command to make the state names into a new variable called State.</p>
+<pre class="r"><code>dat$state &lt;- tolower(rownames(USArrests))</code></pre>
+<p>This dataset has the state names as row names, so we just want to make them into a new variable. We also make them all lower case, because that will help us draw a map later - the map function requires the states to be lower case.</p>
+<p>List the variables contained in the dataset <code>USArrests</code>.</p>
+<pre class="r"><code>colnames(dat)</code></pre>
+<pre><code>## [1] &quot;Murder&quot;   &quot;Assault&quot;  &quot;UrbanPop&quot; &quot;Rape&quot;</code></pre>
+<div id="the-output-is-1-murder-assault-urbanpop-rape-state" class="section level4">
+<h4>The output is: [1] “Murder” “Assault” “UrbanPop” “Rape” “state”</h4>
+</div>
+</div>
+<div id="problem-3" class="section level3">
+<h3>Problem 3</h3>
+<p>What type of variable (from the DVB chapter) is <code>Murder</code>?</p>
+<p>Answer: A quantitative variable.</p>
+<p>What R Type of variable is it?</p>
+<p>Answer: Numeric (class(dat$Murder) returns numeric)</p>
+</div>
+<div id="problem-4" class="section level3">
+<h3>Problem 4</h3>
+<p>What information is contained in this dataset, in general? What do the numbers mean?</p>
+<p>Answer: This dataset contains information on Murder, Assault, and Rape per 100,000 residents, by state for all 50 states in the United States.</p>
+</div>
+<div id="problem-5" class="section level3">
+<h3>Problem 5</h3>
+<p>Draw a histogram of <code>Murder</code> with proper labels and title.</p>
+<pre class="r"><code>hist(dat$Murder, 
+     main = &quot;Histogram of Murders&quot;, 
+     xlim = c(0, 20),
+     ylim = c(0, 13),
+     xlab = &quot;Number of Murders&quot;, 
+     ylab = &quot;Frequency&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="problem-6" class="section level3">
+<h3>Problem 6</h3>
+<p>Please summarize <code>Murder</code> quantitatively. What are its mean and median? What is the difference between mean and median? What is a quartile, and why do you think R gives you the 1st Qu. and 3rd Qu.?</p>
+<pre class="r"><code>mean(dat$Murder)</code></pre>
+<pre><code>## [1] 7.788</code></pre>
+<pre class="r"><code>median(dat$Murder)</code></pre>
+<pre><code>## [1] 7.25</code></pre>
+<pre class="r"><code>summary(dat$Murder)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   0.800   4.075   7.250   7.788  11.250  17.400</code></pre>
+<div id="mean-is-the-average-amount-of-murders-in-all-50-states-while-median-is-the-middle-state-murder-level-in-the-dataset.-the-1st-quartile-shows-us-that-the-lowest-25-state-murder-rates-are-under-4.075.-the-3rd-quartile-shows-us-that-for-the-50.1-75-of-states-which-is-the-block-right-above-the-median.-we-dont-need-the-2nd-quartile-because-we-have-the-median-to-know-that-the-25.1-50-of-states-fall-between-that-number-and-the-1st-quartile.-we-are-given-the-max-as-well-which-is-technically-the-4th-quartile-and-that-alongside-the-3rd-quartile-amount-gives-us-all-the-information-we-need-about-distribution-of-murder-rate-in-the-dataset.-the-mean-is-also-greater-than-the-median-so-the-dataset-is-positively-skewed." class="section level4">
+<h4>Mean is the average amount of Murders in all 50 states, while median is the middle state Murder level in the dataset. The 1st quartile shows us that the lowest 25% state Murder rates are under 4.075. The 3rd quartile shows us that for the 50.1-75% of states, which is the block right above the median. We don’t need the 2nd quartile because we have the Median to know that the 25.1-50% of states fall between that number and the 1st quartile. We are given the max as well, which is technically the 4th quartile, and that alongside the 3rd quartile amount gives us all the information we need about distribution of Murder rate in the dataset. The mean is also greater than the median, so the dataset is positively skewed.</h4>
+</div>
+</div>
+<div id="problem-7" class="section level3">
+<h3>Problem 7</h3>
+<p>Repeat the same steps you followed for <code>Murder</code>, for the variables <code>Assault</code> and <code>Rape</code>. Now plot all three histograms together. You can do this by using the command <code>par(mfrow=c(3,1))</code> and then plotting each of the three.</p>
+<pre class="r"><code>par(mfrow=c(3, 1))
+
+hist(dat$Assault, 
+     main = &quot;Histogram of Assaults&quot;, 
+     xlim = c(0, 355),
+     ylim = c(0, 15),
+     xlab = &quot;Number of Assaults&quot;, 
+     ylab = &quot;Frequency&quot;)
+
+hist(dat$Murder, 
+     main = &quot;Histogram of Murders&quot;, 
+     xlim = c(0, 20),
+     ylim = c(0, 13),
+     xlab = &quot;Number of Murders&quot;, 
+     ylab = &quot;Frequency&quot;)
+
+hist(dat$Rape, 
+     main = &quot;Histogram of Rapes&quot;, 
+     xlim = c(0, 52),
+     ylim = c(0, 15),
+     xlab = &quot;Number of Rapes&quot;, 
+     ylab = &quot;Frequency&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" width="480" /></p>
+<p>What does the command par do, in your own words (you can look this up by asking R <code>?par</code>)?</p>
+<p>Answer: Par splits up our screen so we can see more than one figure in one viewing. In the example above, we used par to split the screen into three horizontal chunks. By changing the second number in the par function, we could also bisect the screen vertically.</p>
+<p>What can you learn from plotting the histograms together?</p>
+<p>Answer: You can compare frequencies, and you can also see how some crimes (such as Assaults) are committed more than others (e.g. Murders).</p>
+</div>
+<div id="problem-8" class="section level3">
+<h3>Problem 8</h3>
+<p>In the console below (not in text), type <code>install.packages(&quot;maps&quot;)</code> and press Enter, and then type <code>install.packages(&quot;ggplot2&quot;)</code> and press Enter. This will install the packages so you can load the libraries.</p>
+<p>Run this code:</p>
+<pre class="r"><code>library(&#39;maps&#39;) 
+library(&#39;ggplot2&#39;) 
+
+ggplot(dat, aes(map_id=state, fill=Murder)) + 
+  geom_map(map=map_data(&quot;state&quot;)) + 
+  expand_limits(x=map_data(&quot;state&quot;)$long, y=map_data(&quot;state&quot;)$lat)</code></pre>
+<p>What does this code do? Explain what each line is doing.</p>
+<p>Answer: This code shows the murder rates graphically. With the entire contiguous US being shown on a map, the code shades states on a light-dark scale based on how high their Murder rate (per 100,000 residents) are. States with lower murder rates are shaded darker, and vice versa for higher ones. We can see states in the PNW and NE regions have lower Murder rates than states in the SE visually with this map.</p>
+<span class="math display">\[\\[2in]\]</span> </a>
+</div>
+</div>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -358,6 +526,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
