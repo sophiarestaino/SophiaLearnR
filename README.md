@@ -1,3 +1,17 @@
+---
+title: "Assignments"
+output:
+  pdf_document:
+    toc: no
+    toc_depth: '1'
+  html_document:
+    toc: yes
+    toc_float: yes
+    collapsed: no
+    number_sections: no
+    toc_depth: 1
+---
+
 
 This page will contain all the assignments you submit for the class.
 
@@ -170,6 +184,10 @@ What does this code do? Explain what each line is doing.
 Answer: This code shows the murder rates graphically. With the entire contiguous US being shown on a map, the code shades states on a light-dark scale based on how high their Murder rate (per 100,000 residents) are. States with lower murder rates are shaded darker, and vice versa for higher ones. We can see states in the PNW and NE regions have lower Murder rates than states in the SE visually with this map. 
 
 $$\\[2in]$$
-</a>
-</div>
 
+
+
+
+# Assignment 2 
+
+(Coming soon)
