@@ -190,6 +190,21 @@ $$\\[2in]$$
 
 # Assignment 2 
 
+---
+title: "Restaino_Assignment 2"
+author: "Sophia Restaino"
+date: "9/27/2021"
+output: pdf_document
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Instructions: Copy your code, paste it into a Word document, and turn it into Canvas. You can turn in a .docx or .pdf file. Show any EDA (graphical or non-graphical) you have used to come to this conclusion.
+
 **Collaborators: Natalie Yang. **
 
 Instructions: Copy your code, paste it into a Word document, and turn it into Canvas. You can turn in a .docx or .pdf file. Show any EDA (graphical or non-graphical) you have used to come to this conclusion.
