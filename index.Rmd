@@ -190,6 +190,143 @@ $$\\[2in]$$
 
 # Assignment 2 
 
-(Coming soon)
+**Collaborators: Natalie Yang. **
+
+Instructions: Copy your code, paste it into a Word document, and turn it into Canvas. You can turn in a .docx or .pdf file. Show any EDA (graphical or non-graphical) you have used to come to this conclusion.
+
+## Set your working directory to the folder where you downloaded the data.
+
+## Read the data
+
+```{r}
+library(readr)
+dat <- read_csv("dat.nsduh.small.1.csv")
+View(dat)
+```
+
+
+## What are the dimensions of the dataset? 
+
+```{r}
+dim(dat)
+```
+
+The dimensions are 171 rows by 7 columns
+
+## Problem 2: Variables
+
+### Describe the variables in the dataset.
+
+#### The variables are all numeric. They represent different number ranges, which account for different meanings.For example, the age2 variable represents the respondents age. In some buckets, only the exact age is contain (ie 1 represents the age 12), but in others it represents a range (eg 13 represents ages 26-29).
+
+### What is this dataset about? Who collected the data, what kind of sample is it, and what was the purpose of generating the data?
+
+#### This data set is from the National Survey of Drug Use in 2019. It looks into when respondents first started using drugs/alcohol/nicotine, even if it's before the legal age. The NSDUH collected the data, and it seems to be a random sample from a large range of ages. This data is meant to reflect drug/alcohol/etc use across the whole country. 
+
+```{r}
+names(dat)
+```
+
+The variables are: mjage, cigage, iralcage, age2, sexatract, speakengl, and irsex
+
+
+## Problem 3: Age and gender
+
+### What is the age distribution of the sample like? Make sure you read the codebook to know what the variable values mean.
+
+
+```{r}
+hist(dat$age2, 
+     main = "Histogram of Age",
+     xlim = c(0, 20),
+     ylim = c(0, 120),
+     xlab = "Quantity in Each Age Bucket", 
+     ylab = "Frequency")
+```
+
+#### The age frequency obciously isn't fully representative of the US population, because it doesn't have respondents below the age of 12.
+
+### Is the sample balanced in terms of gender? If not, are there more females or males?
+
+```{r}
+sum(dat$irsex[dat$irsex == 2])
+sum(dat$irsex)
+```
+160 females, 251 respondents in total
+
+#### This sample isn't balanced in terms of gender because there are 69 more females than males. This is not representative of the US population, where gender is mostly balanced.
+
+## Problem 4: Substance use
+
+#### For which of the three substances included in the dataset (marijuana, alcohol, and cigarettes) do individuals tend to use the substance earlier?
+
+```{r}
+
+dat$iralcage[dat$iralcage == 5]
+dat$cigage[dat$cigage == 10]
+dat$mjage[dat$mjage == 7]
+
+```
+There is only one user in the earliest bucket for marijuana and cigarette use. There are two for alcohol use. I am deducing that individuals tend to use alcohol earlier.
+
+## Problem 5: Sexual attraction
+
+### What does the distribution of sexual attraction look like? Is this what you expected?
+
+```{r}
+dat$sex.attract <- dat$sexatract
+dat$sex.attract[dat$sex.attract == 85 | dat$sex.attract == 94 | dat$sex.attract == 97 |
+                  dat$sex.attract == 98 | dat$sex.attract == 99 ] <- NA
+
+hist(dat$sex.attract, 
+     main = "Histogram of Sexual Attraction",
+     xlab = "Quantity in Each Age Bucket", 
+     ylab = "Frequency")
+```
+Most people identify as heterosexual, which is what I expected.
+
+### What is the distribution of sexual attraction by gender? 
+
+```{r}
+tab.sexgender <- table(dat$sex.attract, dat$irsex)
+barplot(tab.sexgender,
+        main = "Stacked barchart",
+        xlab = "Gender", ylab = "Frequency",
+        legend.text = rownames(tab.sexgender),
+        beside = FALSE) # Stacked bars (default)
+```
+More males identify as straight than females. 
+
+
+## Problem 6: English speaking
+
+### What does the distribution of English speaking look like in the sample? Is this what you might expect for a random sample of the US population? 
+
+
+```{r}
+hist(dat$speakengl, 
+     main = "Histogram of English Speaking",
+     xlim = c(1,3),
+     ylim = c(0, 200),
+     xlab = "Quantity in Each Age Bucket", 
+     ylab = "Frequency")
+```
+Mostly everyone is an English speaker, and speaks very well/well, which is what I expected, as this is a national sample coming from the United States, and the official language is English. It would be interesting to look at how many people are native English speakers in the future. 
+
+
+### Are there more English speaker females or males?
+
+#### (in this, I'm using values 1-3 to count as speaking English)
+
+```{r}
+
+sum(dat$irsex[dat$irsex == 1 & (dat$speakengl == 1 | dat$speakengl == 2 | dat$speakengl == 3)])
+
+sum(dat$irsex[dat$irsex == 2 & (dat$speakengl == 1 | dat$speakengl == 2 | dat$speakengl == 3)])
+
+```
+91 English speakers are male, and 160 are females. All respondents fall into a English-speaking bucket, and so with the unbalanced gender we saw earlier, there are more female English speakers than male. 
+
+
 
 
