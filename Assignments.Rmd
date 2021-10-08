@@ -191,10 +191,15 @@ $$\\[2in]$$
 # Assignment 2 
 
 ---
-title: "Restaino_Assignment 2"
-author: "Sophia Restaino"
-date: "9/27/2021"
-output: pdf_document
+ pdf_document:
+    toc: no
+    toc_depth: '1'
+  html_document: 
+    toc: yes
+    toc_float: yes
+    collapsed: no
+    number_sections: no
+    toc_depth: 1
 ---
 
 
