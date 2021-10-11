@@ -510,10 +510,6 @@ dat &lt;- read_csv(&quot;dat.nsduh.small.1.csv&quot;)</code></pre>
 ##   speakengl = col_double(),
 ##   irsex = col_double()
 ## )</code></pre>
-<pre class="r"><code>View(dat)</code></pre>
-<pre><code>## Warning in system2(&quot;/usr/bin/otool&quot;, c(&quot;-L&quot;, shQuote(DSO)), stdout = TRUE):
-## running command &#39;&#39;/usr/bin/otool&#39; -L &#39;/Library/Frameworks/R.framework/
-## Resources/modules/R_de.so&#39;&#39; had status 1</code></pre>
 </div>
 <div id="what-are-the-dimensions-of-the-dataset" class="section level2">
 <h2>What are the dimensions of the dataset?</h2>
@@ -626,7 +622,194 @@ barplot(tab.sexgender,
 <pre class="r"><code>sum(dat$irsex[dat$irsex == 2 &amp; (dat$speakengl == 1 | dat$speakengl == 2 | dat$speakengl == 3)])</code></pre>
 <pre><code>## [1] 160</code></pre>
 <p>91 English speakers are male, and 160 are females. All respondents fall into a English-speaking bucket, and so with the unbalanced gender we saw earlier, there are more female English speakers than male.</p>
+<p><span class="math display">\[\\[2in]\]</span></p>
 </div>
+</div>
+</div>
+</div>
+<div id="exam-1" class="section level1">
+<h1>Exam 1</h1>
+<div id="instructions" class="section level2">
+<h2>Instructions</h2>
+<ol style="list-style-type: lower-alpha">
+<li><p>Create a folder in your computer (a good place would be under Crim 250, Exams).</p></li>
+<li><p>Download the dataset from the Canvas website (fatal-police-shootings-data.csv) onto that folder, and save your Exam 1.Rmd file in the same folder.</p></li>
+<li><p>Download the README.md file. This is the codebook.</p></li>
+<li><p>Load the data into an R data frame.</p></li>
+</ol>
+<pre class="r"><code>dat &lt;- read_csv(&quot;fatal-police-shootings-data.csv&quot;)</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   id = col_double(),
+##   name = col_character(),
+##   date = col_date(format = &quot;&quot;),
+##   manner_of_death = col_character(),
+##   armed = col_character(),
+##   age = col_double(),
+##   gender = col_character(),
+##   race = col_character(),
+##   city = col_character(),
+##   state = col_character(),
+##   signs_of_mental_illness = col_logical(),
+##   threat_level = col_character(),
+##   flee = col_character(),
+##   body_camera = col_logical(),
+##   longitude = col_double(),
+##   latitude = col_double(),
+##   is_geocoding_exact = col_logical()
+## )</code></pre>
+</div>
+<div id="problem-1-10-points" class="section level2">
+<h2>Problem 1 (10 points)</h2>
+<ol style="list-style-type: lower-alpha">
+<li>Describe the dataset. This is the source: <a href="https://github.com/washingtonpost/data-police-shootings" class="uri">https://github.com/washingtonpost/data-police-shootings</a> . Write two sentences (max.) about this.</li>
+</ol>
+<div id="the-dataset-compiled-by-washington-post-tracks-fatal-civilian-shootings-in-the-united-states-by-an-officer-in-the-line-of-duty-since-january-1-2015.-it-tracks-more-than-a-dozen-details-e.g.race-of-the-victim-if-they-were-having-a-mental-health-crisis-which-are-not-available-in-cdcfbi-records-and-those-records-are-incomplete---the-database-is-updated-regularly-with-new-detailsshootings." class="section level4">
+<h4>The dataset (compiled by Washington Post) tracks fatal civilian shootings in the United States by an officer in the line of duty since January 1, 2015. It tracks more than a dozen details, (e.g.race of the victim, if they were having a mental health crisis), which are not available in CDC/FBI records, and those records are incomplete - the database is updated regularly with new details/shootings.</h4>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>How many observations are there in the data frame?</li>
+</ol>
+<pre class="r"><code>dim(dat)</code></pre>
+<pre><code>## [1] 6594   17</code></pre>
+</div>
+<div id="there-are-6594-observations-in-the-data-frame" class="section level4">
+<h4>There are 6,594 observations in the data frame</h4>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Look at the names of the variables in the data frame. Describe what “body_camera”, “flee”, and “armed” represent, according to the codebook. Again, only write one sentence (max) per variable.</li>
+</ol>
+<pre class="r"><code>names(dat)</code></pre>
+<pre><code>##  [1] &quot;id&quot;                      &quot;name&quot;                   
+##  [3] &quot;date&quot;                    &quot;manner_of_death&quot;        
+##  [5] &quot;armed&quot;                   &quot;age&quot;                    
+##  [7] &quot;gender&quot;                  &quot;race&quot;                   
+##  [9] &quot;city&quot;                    &quot;state&quot;                  
+## [11] &quot;signs_of_mental_illness&quot; &quot;threat_level&quot;           
+## [13] &quot;flee&quot;                    &quot;body_camera&quot;            
+## [15] &quot;longitude&quot;               &quot;latitude&quot;               
+## [17] &quot;is_geocoding_exact&quot;</code></pre>
+</div>
+<div id="body_camera-denotes-whether-or-not-the-officer-who-killed-the-civilian-was-wearing-a-body-camera-at-some-point-during-the-incident.-flee-tells-us-if-the-victim-was-moving-away-from-officers-and-if-so---by-what-means.-the-armed-variable-tells-us-if-the-victim-was-armed-with-some-sort-of-implement-that-a-police-officer-believed-could-inflict-harm." class="section level4">
+<h4>“body_camera” denotes whether or not the officer who killed the civilian was wearing a body camera at some point during the incident. “flee” tells us if the victim was moving away from officers, and if so - by what means. The “armed” variable tells us if the victim was armed with some sort of implement that a police officer believed could inflict harm.</h4>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>What are three weapons that you are surprised to find in the “armed” variable? Make a table of the values in “armed” to see the options.</li>
+</ol>
+<pre class="r"><code>armed.val &lt;- table(unique(dat$armed))
+View(armed.val)</code></pre>
+<pre><code>## Warning in system2(&quot;/usr/bin/otool&quot;, c(&quot;-L&quot;, shQuote(DSO)), stdout = TRUE):
+## running command &#39;&#39;/usr/bin/otool&#39; -L &#39;/Library/Frameworks/R.framework/
+## Resources/modules/R_de.so&#39;&#39; had status 1</code></pre>
+</div>
+<div id="samurai-sword-is-very-unique-and-i-didnt-expect-to-see-that-in-there.-also-someone-must-have-very-good-dexterity-to-use-a-pen-in-a-dangerous-way.-i-also-found-the-specification-between-just-a-bb-gun-and-the-bb-gun-and-vehicle-option-interesting." class="section level4">
+<h4>Samurai sword is very unique, and I didn’t expect to see that in there. Also, someone must have very good dexterity to use a pen in a dangerous way. I also found the specification between just a BB gun and the “BB gun and vehicle” option interesting.</h4>
+</div>
+</div>
+<div id="problem-2-10-points" class="section level2">
+<h2>Problem 2 (10 points)</h2>
+<ol style="list-style-type: lower-alpha">
+<li>Describe the age distribution of the sample. Is this what you would expect to see?</li>
+</ol>
+<pre class="r"><code>hist(dat$age,
+     main = &quot;Histogram of Age&quot;,
+     xlim = c(0, 100),
+     ylim = c(0, 1000),
+     xlab = &quot;Ages&quot;)</code></pre>
+<p><img src="Assignments_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<div id="the-age-distribution-of-the-sample-does-not-follow-a-normal-distribution-and-is-actually-skewed-right.-this-shows-us-that-more-victims-are-in-that-20-40-age-range.-this-makes-sense-to-me-intuitively-because-i-would-expect-victims-to-be-on-the-younger-side.-we-see-this-database-much-resembles-the-case-of-michael-brown-who-was-18-when-he-was-fatally-killed-by-an-officer-in-the-line-of-duty.-also-since-were-considering-fleeing-and-victims-with-weapons-i-would-expect-younger-people-to-be-more-stealthy-of-movers-and-quicker-with-weapons-since-old-people-dont-move-as-well." class="section level4">
+<h4>The age distribution of the sample does not follow a normal distribution, and is actually skewed right. This shows us that more victims are in that 20-40 age range. This makes sense to me intuitively, because I would expect victims to be on the younger side. We see this database much resembles the case of Michael Brown, who was 18 when he was fatally killed by an officer in the line of duty. Also, since we’re considering “fleeing” and victims with weapons, I would expect younger people to be more stealthy of movers and quicker with weapons, since old people don’t move as well.</h4>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>To understand the center of the age distribution, would you use a mean or a median, and why? Find the one you picked.</li>
+</ol>
+<pre class="r"><code>median(dat$age, na.rm = T)</code></pre>
+<pre><code>## [1] 35</code></pre>
+</div>
+<div id="while-the-mean-would-represent-the-average-age-of-the-victims-in-the-dataset-the-median-actually-helps-us-find-the-middle-number-so-the-center-of-the-distribution.-we-can-see-here-that-the-median-is-35-years-of-age-which-falls-into-that-20-40-bucket-of-most-common-ages-in-part-a." class="section level4">
+<h4>While the mean would represent the average age of the victims in the dataset, the median actually helps us find the middle number, so the “center” of the distribution. We can see here that the median is 35 years of age, which falls into that 20-40 bucket of most common ages in part a.</h4>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Describe the gender distribution of the sample. Do you find this surprising?</li>
+</ol>
+<pre class="r"><code>length(dat$gender[dat$gender == &quot;M&quot;])</code></pre>
+<pre><code>## [1] 6301</code></pre>
+<pre class="r"><code>length(dat$gender[dat$gender == &quot;F&quot;])</code></pre>
+<pre><code>## [1] 296</code></pre>
+<pre class="r"><code>length(dat$gender[dat$gender == &quot;None&quot;])</code></pre>
+<pre><code>## [1] 3</code></pre>
+</div>
+<div id="nearly-all-the-victims-in-the-sample-were-men.-i-do-not-find-this-surprising-because-most-of-the-publicized-police-brutality-victims-trayvon-martin-george-floyd-michael-brown-etc.-have-been-men.-in-fact-im-not-sure-if-i-can-recall-an-incident-of-a-fatal-police-shooting-where-the-victim-was-a-woman-off-the-top-of-my-head.-also-it-could-be-that-gender-rolesstereotypes-play-into-how-aggressively-a-police-officer-treats-someone-which-is-why-more-men-are-killed-in-fatal-police-shootings." class="section level4">
+<h4>Nearly all the victims in the sample were men. I do not find this surprising, because most of the publicized police-brutality victims (Trayvon Martin, George Floyd, Michael Brown, etc.) have been men. In fact, I’m not sure if I can recall an incident of a fatal police shooting where the victim was a woman off the top of my head. Also, it could be that gender roles/stereotypes play into how aggressively a police officer treats someone, which is why more men are killed in fatal police shootings.</h4>
+</div>
+</div>
+<div id="problem-3-10-points" class="section level2">
+<h2>Problem 3 (10 points)</h2>
+<ol style="list-style-type: lower-alpha">
+<li>How many police officers had a body camera, according to news reports? What proportion is this of all the incidents in the data? Are you surprised that it is so high or low?</li>
+</ol>
+<pre class="r"><code>body.cam.yes &lt;- length(which(dat$body_camera == &quot;TRUE&quot;))
+(body.cam.yes/nrow(dat)) * 100</code></pre>
+<pre><code>## [1] 13.80042</code></pre>
+<div id="officers-had-a-body-camera.-im-surprised-by-how-low-this-proportion-is.-i-dont-know-much-about-body-camera-usage-by-officers-but-i-assumed-that-at-least-half-the-time-theres-an-incident-with-a-civilian-the-officer-would-turn-on-their-body-camerahave-some-kind-of-footage-at-some-point-during-the-encounter.-again-i-dont-know-the-requirements-for-body-cameras-but-i-expected-higher.-in-highly-publicized-cases-there-tends-to-be-body-camera-footage-perhaps-this-is-why-they-recieve-more-media-attention-so-i-just-assumed-that-would-be-very-common-and-not-only-occur-13-of-the-time." class="section level4">
+<h4>910 officers had a body camera. I’m surprised by how low this proportion is. I don’t know much about body camera usage by officers, but I assumed that at least half the time there’s an incident with a civilian, the officer would turn on their body camera/have some kind of footage at some point during the encounter. Again, I don’t know the requirements for body cameras, but I expected higher. In highly publicized cases, there tends to be body camera footage (perhaps this is why they recieve more media attention), so I just assumed that would be very common, and not only occur 13% of the time.</h4>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>In how many of the incidents was the victim fleeing? What proportion is this of the total number of incidents in the data? Is this what you would expect?</li>
+</ol>
+<pre class="r"><code>fleeing &lt;- length(which(dat$flee != &quot;Not fleeing&quot;))
+(fleeing/nrow(dat)) * 100</code></pre>
+<pre><code>## [1] 32.62056</code></pre>
+</div>
+<div id="victims-were-fleeing.-this-represents-about-a-third-of-the-total-number-of-incidents.-this-is-honestly-lower-than-what-i-expected.-again-i-dont-know-much-about-how-frequently-civilians-tend-to-flee-from-police-but-i-assumed-that-since-these-officers-used-fatal-violent-force-on-victims-these-victims-had-to-be-doing-something-such-as-fleeing-for-them-to-be-shot." class="section level4">
+<h4>2151 victims were fleeing. This represents about a third of the total number of incidents. This is honestly lower than what I expected. Again, I don’t know much about how frequently civilians tend to flee from police, but I assumed that since these officers used (fatal) violent force on victims, these victims had to be doing something (such as fleeing), for them to be shot.</h4>
+</div>
+</div>
+<div id="problem-4-10-points---answer-only-one-of-these-a-or-b." class="section level2">
+<h2>Problem 4 (10 points) - Answer only one of these (a or b).</h2>
+<ol style="list-style-type: lower-alpha">
+<li>Describe the relationship between the variables “body camera” and “flee” using a stacked barplot. What can you conclude from this relationship?</li>
+</ol>
+<p><em>Hint 1: The categories along the x-axis are the options for “flee”, each bar contains information about whether the police officer had a body camera (vertically), and the height along the y-axis shows the frequency of that category).</em></p>
+<p><em>Hint 2: Also, if you are unsure about the syntax for barplot, run ?barplot in R and see some examples at the bottom of the documentation. This is usually a good way to look up the syntax of R code. You can also Google it.</em></p>
+<pre class="r"><code>tab.fleecam &lt;- table(dat$body_camera, dat$flee)
+barplot(tab.fleecam,
+        main = &quot;Stacked barchart&quot;,
+        xlab = &quot;Fleeing category&quot;, 
+        ylab = &quot;Frequency&quot;,
+        legend.text = rownames(tab.fleecam),
+        beside = FALSE) </code></pre>
+<p><img src="Assignments_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<div id="we-can-see-from-this-stacked-barplot-that-there-is-very-little-body-camera-footage-when-victims-are-fleeingnot-regardless.-additionally-there-is-actually-less-body-camera-footage-of-victims-who-were-fleeing-than-those-who-werent.-this-shocks-me-because-i-expect-police-would-turn-on-body-cameras-if-a-civilian-is-literally-moving-away-from-them.-i-expected-there-to-be-less-body-camera-footage-of-non-fleeing-victims-rather-than-the-opposite." class="section level4">
+<h4>We can see from this stacked barplot that there is very little body camera footage when victims are fleeing/not regardless. Additionally, there is actually less body camera footage of victims who were fleeing than those who weren’t. This shocks me, because I expect police would turn on body cameras if a civilian is literally moving away from them. I expected there to be less body camera footage of non-fleeing victims, rather than the opposite.</h4>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Describe the relationship between age and race by using a boxplot. What can you conclude from this relationship?</li>
+</ol>
+<p><em>Hint 1: The categories along the x-axis are the race categories and the height along the y-axis is age.</em></p>
+<p><em>Hint 2: Also, if you are unsure about the syntax for boxplot, run ?boxplot in R and see some examples at the bottom of the documentation. This is usually a good way to look up the syntax of R code. You can also Google it.</em></p>
+<pre class="r"><code>plot(factor(dat$race), 
+     dat$age, 
+     ylab=&quot;Age&quot;, 
+     xlab=&quot;Race&quot;,
+     main = &quot;Boxplot of Age and Race&quot;)</code></pre>
+<p><img src="Assignments_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+</div>
+<div id="we-can-see-here-that-the-median-middle-age-of-white-and-asian-victims-is-higher-than-that-of-others.-we-can-also-see-that-black-victims-and-other-tend-to-have-the-lowest-ages.-also-we-can-see-the-age-range-of-white-victims-is-lowest.-we-can-see-here-that-members-of-certain-racial-categories-are-fatally-shot-at-younger-ages-than-those-of-others.-could-this-tie-into-life-expectancy-for-people-in-certain-racial-categories-people-of-white-and-asian-decent-have-higher-life-expectancies-than-say-black-people." class="section level4">
+<h4>We can see here that the median (middle) age of White and Asian victims is higher than that of others. We can also see that Black victims (and other) tend to have the lowest ages. Also, we can see the age range of White victims is lowest. We can see here that members of certain racial categories are fatally shot at younger ages than those of others. Could this tie into life-expectancy for people in certain racial categories? People of White and Asian decent have higher life-expectancies, than say, Black people.</h4>
+</div>
+</div>
+<div id="extra-credit-10-points" class="section level2">
+<h2>Extra credit (10 points)</h2>
+<ol style="list-style-type: lower-alpha">
+<li>What does this code tell us?</li>
+</ol>
+<pre class="r"><code>mydates &lt;- as.Date(dat$date)
+head(mydates)
+(mydates[length(mydates)] - mydates[1])</code></pre>
+<div id="the-first-line-puts-the-date-variable-into-actual-date-form-r-initially-puts-them-in-as-characters.-we-can-see-that-now-all-the-dates-read-as-such-by-using-the-head-function.-the-last-line-calculates-the-time-difference-between-the-dates-and-shows-us-that-this-dataset-covers-2458-days-where-there-were-fatal-plicecivilian-shootings-thus-far.-this-is-over-6-years-of-time-which-means-that-this-dataset-must-have-been-updated-recently-since-it-first-started-in-2015-and-its-now-2021." class="section level4">
+<h4>The first line puts the date variable into actual date form (R initially puts them in as characters). We can see that now all the dates read as such by using the head function. The last line calculates the time difference between the dates, and shows us that this dataset covers 2458 days where there were fatal plice/civilian shootings thus far. This is over 6 years of time, which means that this dataset must have been updated recently, since it first started in 2015 and it’s now 2021.</h4>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>On Friday, a new report was published that was described as follows by The Guardian: “More than half of US police killings are mislabelled or not reported, study finds.” Without reading this article now (due to limited time), why do you think police killings might be mislabelled or underreported?</li>
+</ol>
+<p>I agree with this statement. We read in the codebook that the FBI/CDC log fatal shootings by police, but officials acknowledge that their data is incomplete. Since 2015, The Post has documented more than twice as many fatal shootings by police as recorded on average annually. I think perhaps this occurs because: paperwork isn’t done/finalized, trials are still occurring, details of cases are still emerging, and that it looks bad on the US that officials are shooting so many civilians.</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Regarding missing values in problem 4, do you see any? If so, do you think that’s all that’s missing from the data?</li>
+</ol>
+<p>Yes, there are missing values in problem 4. I’m sure there are many other things that are missing from the data. All these events are unique of eachother and it’s hard to do EDA when there are so many specific values/cases, and its easier to put them all in an Other bucket.</p>
 </div>
 </div>
 </div>
