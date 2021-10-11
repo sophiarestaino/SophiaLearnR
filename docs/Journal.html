@@ -12,7 +12,7 @@
 
 
 
-<title>Assignments</title>
+<title>Journal</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -345,7 +345,7 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="Assignments.html">Assignments</a>
+  <a href="Journal.html">Journal</a>
 </li>
 <li>
   <a href="Links.html">Links</a>
@@ -362,7 +362,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Assignments</h1>
+<h1 class="title toc-ignore">Journal</h1>
 
 </div>
 
@@ -426,7 +426,7 @@ div.tocify {
      ylim = c(0, 13),
      xlab = &quot;Number of Murders&quot;, 
      ylab = &quot;Frequency&quot;)</code></pre>
-<p><img src="Assignments_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
 <div id="problem-6" class="section level3">
 <h3>Problem 6</h3>
@@ -467,7 +467,7 @@ hist(dat$Rape,
      ylim = c(0, 15),
      xlab = &quot;Number of Rapes&quot;, 
      ylab = &quot;Frequency&quot;)</code></pre>
-<p><img src="Assignments_files/figure-html/unnamed-chunk-7-1.png" width="480" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-7-1.png" width="480" /></p>
 <p>What does the command par do, in your own words (you can look this up by asking R <code>?par</code>)?</p>
 <p>Answer: Par splits up our screen so we can see more than one figure in one viewing. In the example above, we used par to split the screen into three horizontal chunks. By changing the second number in the par function, we could also bisect the screen vertically.</p>
 <p>What can you learn from plotting the histograms together?</p>
@@ -546,7 +546,7 @@ dat &lt;- read_csv(&quot;dat.nsduh.small.1.csv&quot;)</code></pre>
      ylim = c(0, 120),
      xlab = &quot;Quantity in Each Age Bucket&quot;, 
      ylab = &quot;Frequency&quot;)</code></pre>
-<p><img src="Assignments_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <div id="the-age-frequency-obciously-isnt-fully-representative-of-the-us-population-because-it-doesnt-have-respondents-below-the-age-of-12." class="section level4">
 <h4>The age frequency obciously isn’t fully representative of the US population, because it doesn’t have respondents below the age of 12.</h4>
 </div>
@@ -588,7 +588,7 @@ hist(dat$sex.attract,
      main = &quot;Histogram of Sexual Attraction&quot;,
      xlab = &quot;Quantity in Each Age Bucket&quot;, 
      ylab = &quot;Frequency&quot;)</code></pre>
-<p><img src="Assignments_files/figure-html/unnamed-chunk-15-1.png" width="672" /> Most people identify as heterosexual, which is what I expected.</p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-15-1.png" width="672" /> Most people identify as heterosexual, which is what I expected.</p>
 </div>
 <div id="what-is-the-distribution-of-sexual-attraction-by-gender" class="section level3">
 <h3>What is the distribution of sexual attraction by gender?</h3>
@@ -598,7 +598,7 @@ barplot(tab.sexgender,
         xlab = &quot;Gender&quot;, ylab = &quot;Frequency&quot;,
         legend.text = rownames(tab.sexgender),
         beside = FALSE) # Stacked bars (default)</code></pre>
-<p><img src="Assignments_files/figure-html/unnamed-chunk-16-1.png" width="672" /> More males identify as straight than females.</p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-16-1.png" width="672" /> More males identify as straight than females.</p>
 </div>
 </div>
 <div id="problem-6-english-speaking" class="section level2">
@@ -611,7 +611,7 @@ barplot(tab.sexgender,
      ylim = c(0, 200),
      xlab = &quot;Quantity in Each Age Bucket&quot;, 
      ylab = &quot;Frequency&quot;)</code></pre>
-<p><img src="Assignments_files/figure-html/unnamed-chunk-17-1.png" width="672" /> Mostly everyone is an English speaker, and speaks very well/well, which is what I expected, as this is a national sample coming from the United States, and the official language is English. It would be interesting to look at how many people are native English speakers in the future.</p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-17-1.png" width="672" /> Mostly everyone is an English speaker, and speaks very well/well, which is what I expected, as this is a national sample coming from the United States, and the official language is English. It would be interesting to look at how many people are native English speakers in the future.</p>
 </div>
 <div id="are-there-more-english-speaker-females-or-males" class="section level3">
 <h3>Are there more English speaker females or males?</h3>
@@ -713,7 +713,7 @@ View(armed.val)</code></pre>
      xlim = c(0, 100),
      ylim = c(0, 1000),
      xlab = &quot;Ages&quot;)</code></pre>
-<p><img src="Assignments_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <div id="the-age-distribution-of-the-sample-does-not-follow-a-normal-distribution-and-is-actually-skewed-right.-this-shows-us-that-more-victims-are-in-that-20-40-age-range.-this-makes-sense-to-me-intuitively-because-i-would-expect-victims-to-be-on-the-younger-side.-we-see-this-database-much-resembles-the-case-of-michael-brown-who-was-18-when-he-was-fatally-killed-by-an-officer-in-the-line-of-duty.-also-since-were-considering-fleeing-and-victims-with-weapons-i-would-expect-younger-people-to-be-more-stealthy-of-movers-and-quicker-with-weapons-since-old-people-dont-move-as-well." class="section level4">
 <h4>The age distribution of the sample does not follow a normal distribution, and is actually skewed right. This shows us that more victims are in that 20-40 age range. This makes sense to me intuitively, because I would expect victims to be on the younger side. We see this database much resembles the case of Michael Brown, who was 18 when he was fatally killed by an officer in the line of duty. Also, since we’re considering “fleeing” and victims with weapons, I would expect younger people to be more stealthy of movers and quicker with weapons, since old people don’t move as well.</h4>
 <ol start="2" style="list-style-type: lower-alpha">
@@ -773,7 +773,7 @@ barplot(tab.fleecam,
         ylab = &quot;Frequency&quot;,
         legend.text = rownames(tab.fleecam),
         beside = FALSE) </code></pre>
-<p><img src="Assignments_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <div id="we-can-see-from-this-stacked-barplot-that-there-is-very-little-body-camera-footage-when-victims-are-fleeingnot-regardless.-additionally-there-is-actually-less-body-camera-footage-of-victims-who-were-fleeing-than-those-who-werent.-this-shocks-me-because-i-expect-police-would-turn-on-body-cameras-if-a-civilian-is-literally-moving-away-from-them.-i-expected-there-to-be-less-body-camera-footage-of-non-fleeing-victims-rather-than-the-opposite." class="section level4">
 <h4>We can see from this stacked barplot that there is very little body camera footage when victims are fleeing/not regardless. Additionally, there is actually less body camera footage of victims who were fleeing than those who weren’t. This shocks me, because I expect police would turn on body cameras if a civilian is literally moving away from them. I expected there to be less body camera footage of non-fleeing victims, rather than the opposite.</h4>
 <ol start="2" style="list-style-type: lower-alpha">
@@ -786,7 +786,7 @@ barplot(tab.fleecam,
      ylab=&quot;Age&quot;, 
      xlab=&quot;Race&quot;,
      main = &quot;Boxplot of Age and Race&quot;)</code></pre>
-<p><img src="Assignments_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 </div>
 <div id="we-can-see-here-that-the-median-middle-age-of-white-and-asian-victims-is-higher-than-that-of-others.-we-can-also-see-that-black-victims-and-other-tend-to-have-the-lowest-ages.-also-we-can-see-the-age-range-of-white-victims-is-lowest.-we-can-see-here-that-members-of-certain-racial-categories-are-fatally-shot-at-younger-ages-than-those-of-others.-could-this-tie-into-life-expectancy-for-people-in-certain-racial-categories-people-of-white-and-asian-decent-have-higher-life-expectancies-than-say-black-people." class="section level4">
 <h4>We can see here that the median (middle) age of White and Asian victims is higher than that of others. We can also see that Black victims (and other) tend to have the lowest ages. Also, we can see the age range of White victims is lowest. We can see here that members of certain racial categories are fatally shot at younger ages than those of others. Could this tie into life-expectancy for people in certain racial categories? People of White and Asian decent have higher life-expectancies, than say, Black people.</h4>
