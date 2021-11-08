@@ -481,6 +481,27 @@ __3.8.2 - different widths/heights can be called into jittering. Also, position 
 
 __3.8.3 - Geom count tells us how many observations are at each location. This doesn't solve an overplotting issue (visually), but helps describe what's occurring in the graph. Geom jitter visually demonstrates overplotting by adding the randomness. __
 
+```{r}
+bar <- ggplot(data = diamonds) + 
+  geom_bar(
+    mapping = aes(x = cut, fill = cut), 
+    show.legend = FALSE,
+    width = 1
+  ) + 
+  theme(aspect.ratio = 1) +
+  labs(x = NULL, y = NULL)
+
+bar + coord_polar()
+## ?labs
+
+```
+__3.9.2 - labs makes sure axis/legend labels always display the full variable name. __
+
+__3.9.3 - coord map simply maps the information, while quickmap sets the aspect ratio correctly in addition to mapping, which is very important for geographic information.__
+
+
+__3.9.4 - This shows us the relationship between city/highway miles per gallon with respect to different types of cars. Coord_fixed fixes the aspect ratio, and makes sure that one unit on the x-axis is the same length as one unit on the y-axis (with the default setting used here). Geom_abline adds a reference line to the plot - the default setting is used here, so we're not basing the abline off of the data in the scatter.__
+
 
 $$\\[2in]$$
 
