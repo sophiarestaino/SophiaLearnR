@@ -655,28 +655,76 @@ ggplot(data = mpg) +
 <p><img src="Journal_files/figure-html/unnamed-chunk-21-3.png" width="672" /></p>
 <pre class="r"><code>## this isn&#39;t really useful because it shows us the type of car vs the type of drive (front wheel/4 wheel/etc), and each different type of car has a different type of drive so there wouldn&#39;t be any &quot;relationship&quot; to see because it&#39;s all one set thing</code></pre>
 <pre class="r"><code>ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy, color = class))</code></pre>
+  geom_point(mapping = aes(x = displ, y = hwy, color = &quot;blue&quot;))</code></pre>
 <p><img src="Journal_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
-<pre class="r"><code>## different variables will have different colors based off of the class of vehicle. Color could also just be &quot;blue&quot; and then all the points would be that color</code></pre>
+<pre class="r"><code>## ?mpg</code></pre>
+<p><strong>There is a missing parenthesis before color so it’s not being put in correctly to the ggplot function when it’s set manually/by name.</strong></p>
+<p><strong>Categorical variables are ones such as type of car/transmission/model name, while variables such as miles per gallon are discrete/continuous.</strong></p>
+<pre class="r"><code>## ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, 
+                           color = hwy, size = cty, shape = displ))</code></pre>
+<pre><code>## mapping: x = ~displ, y = ~hwy, colour = ~hwy, size = ~cty, shape = ~displ 
+## geom_point: na.rm = FALSE
+## stat_identity: na.rm = FALSE
+## position_identity</code></pre>
+<p><strong>We get errors because continuous functions can’t be used for these - how is one supposed to set a color based on a variable when there aren’t even set variables?</strong></p>
 <pre class="r"><code>ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy, size = class))</code></pre>
+  geom_point(mapping = aes(x = displ, y = hwy, 
+                           color = class, shape = class, size = class))</code></pre>
 <pre><code>## Warning: Using size for a discrete variable is not advised.</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
-<pre class="r"><code>## size of the scatter point changes based off of the class of car</code></pre>
-<pre class="r"><code># Left
-ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy, alpha = class))</code></pre>
-<pre><code>## Warning: Using alpha for a discrete variable is not advised.</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
-<pre class="r"><code># Right
-ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy, shape = class))</code></pre>
 <pre><code>## Warning: The shape palette can deal with a maximum of 6 discrete values
 ## because more than 6 becomes difficult to discriminate; you have 7.
 ## Consider specifying shapes manually if you must have them.</code></pre>
 <pre><code>## Warning: Removed 62 rows containing missing values (geom_point).</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-24-2.png" width="672" /></p>
-<pre class="r"><code>## alpha controls the transparency of the points while shape controls the shape of them</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<pre class="r"><code>## ?geom_point</code></pre>
+<p><strong>Everything looks all messy and not-uniform because every different type of car has a different size/shape/color.</strong></p>
+<p><strong>stroke adjusts the thickness of the border for shapes that can take on different colors both inside and outside</strong></p>
+<pre class="r"><code>ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, colour = displ &lt; 5))</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><strong>This changes the color of the scatter dot based off of the value for displacement. So, andy engine with displacement of 5 litres is a different color</strong></p>
+<pre class="r"><code>ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) + 
+  facet_wrap(~ cty, nrow = 2)</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-26-1.png" width="672" /> <strong>The subsets of data show up in an interesting pattern because they’re not set with each “category” as with a discrete variable</strong></p>
+<p><strong>3.5.2 - These blanks represent the categories in which drive/class do not overlap so there is nothing to plot here in facet</strong></p>
+<pre class="r"><code>ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(drv ~ .)</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(. ~ cyl)</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
+<p><strong>The . makes it so the rows/columns are not faceted</strong></p>
+<pre class="r"><code>ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) + 
+  facet_wrap(~ class, nrow = 2)</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<pre class="r"><code>##?facet_wrap</code></pre>
+<p><strong>Faceting helps clearly split up each “type” into a different graph without the data all overlaying eachother. However, a large dataset with many different types would make many graphs which could get confusing.</strong></p>
+<p><strong>nrow/ncol show the number of rows and columns. Facet grid doesn’t have this because the formula in it should contain two variables, and those variables’ overlap is where there are different graphs.</strong></p>
+<p><strong>3.5.6 - it’s easier to visualize the unique variable with all the different subtypes as the rows then having a many short/clustered columns - this creates a more aesthetically appealing graph</strong></p>
+<p><strong>3.6.1 - I would use geom_point for a line graph, and geom_smooth for the rest of the graphs listed. </strong></p>
+<pre class="r"><code>ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE)</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-29-1.png" width="672" /> <strong>This tracks with what I expected because the se default is TRUE, so with it FALSE there is no smoothing occurin and so it looks like a mixed line/scatter chart separated by category.</strong></p>
+<p><strong>3.6.3 - This tells us whether or not to show the legend in our graph. When it’s false, there is no legend. I think it was used earlier in the chapter because it distinguishes which variable is which, and so we know what each color represents.</strong></p>
+<p><strong>3.6.4 - As mentioned in 3.5.2, the se function tells us whether or not smoothing is in effect. The default is TRUE.</strong></p>
+<p><strong>3.6.5 - No, these graphs won’t look any different because everything specified in the second graph is the default settings for the smooth/point functions.</strong></p>
+<pre class="r"><code>?stat_summary</code></pre>
+<p><strong>3.7.2 - geom_bar() makes the height of the bar proportional to the number of cases in each group. geom_col() uses stat_identity() and leaves the data as is.</strong></p>
+<p><strong>3.7.3 -</strong></p>
+<p><strong>3.7.4 - </strong></p>
+<pre class="r"><code>ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, y = after_stat(prop)))</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = color, y = after_stat(prop)))</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-31-2.png" width="672" /> <strong>group =1 tells us how to group all the different variables. These two graphs have issues because they’re not grouped at all. The first graph has no color in it because it needs the grouping variable to do that. The second has many colors because each category is grouped by default, so each category is grouped within itself additionally.</strong></p>
 <p><span class="math display">\[\\[2in]\]</span></p>
 </div>
 </div>
@@ -758,7 +806,7 @@ View(armed.val)</code></pre>
      xlim = c(0, 100),
      ylim = c(0, 1000),
      xlab = &quot;Ages&quot;)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 <div id="the-age-distribution-of-the-sample-does-not-follow-a-normal-distribution-and-is-actually-skewed-right.-this-shows-us-that-more-victims-are-in-that-20-40-age-range.-this-makes-sense-to-me-intuitively-because-i-would-expect-victims-to-be-on-the-younger-side.-we-see-this-database-much-resembles-the-case-of-michael-brown-who-was-18-when-he-was-fatally-killed-by-an-officer-in-the-line-of-duty.-also-since-were-considering-fleeing-and-victims-with-weapons-i-would-expect-younger-people-to-be-more-stealthy-of-movers-and-quicker-with-weapons-since-old-people-dont-move-as-well." class="section level4">
 <h4>The age distribution of the sample does not follow a normal distribution, and is actually skewed right. This shows us that more victims are in that 20-40 age range. This makes sense to me intuitively, because I would expect victims to be on the younger side. We see this database much resembles the case of Michael Brown, who was 18 when he was fatally killed by an officer in the line of duty. Also, since we’re considering “fleeing” and victims with weapons, I would expect younger people to be more stealthy of movers and quicker with weapons, since old people don’t move as well.</h4>
 <ol start="2" style="list-style-type: lower-alpha">
@@ -818,7 +866,7 @@ barplot(tab.fleecam,
         ylab = &quot;Frequency&quot;,
         legend.text = rownames(tab.fleecam),
         beside = FALSE) </code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <div id="we-can-see-from-this-stacked-barplot-that-there-is-very-little-body-camera-footage-when-victims-are-fleeingnot-regardless.-additionally-there-is-actually-less-body-camera-footage-of-victims-who-were-fleeing-than-those-who-werent.-this-shocks-me-because-i-expect-police-would-turn-on-body-cameras-if-a-civilian-is-literally-moving-away-from-them.-i-expected-there-to-be-less-body-camera-footage-of-non-fleeing-victims-rather-than-the-opposite." class="section level4">
 <h4>We can see from this stacked barplot that there is very little body camera footage when victims are fleeing/not regardless. Additionally, there is actually less body camera footage of victims who were fleeing than those who weren’t. This shocks me, because I expect police would turn on body cameras if a civilian is literally moving away from them. I expected there to be less body camera footage of non-fleeing victims, rather than the opposite.</h4>
 <ol start="2" style="list-style-type: lower-alpha">
@@ -831,7 +879,7 @@ barplot(tab.fleecam,
      ylab=&quot;Age&quot;, 
      xlab=&quot;Race&quot;,
      main = &quot;Boxplot of Age and Race&quot;)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 </div>
 <div id="we-can-see-here-that-the-median-middle-age-of-white-and-asian-victims-is-higher-than-that-of-others.-we-can-also-see-that-black-victims-and-other-tend-to-have-the-lowest-ages.-also-we-can-see-the-age-range-of-white-victims-is-lowest.-we-can-see-here-that-members-of-certain-racial-categories-are-fatally-shot-at-younger-ages-than-those-of-others.-could-this-tie-into-life-expectancy-for-people-in-certain-racial-categories-people-of-white-and-asian-decent-have-higher-life-expectancies-than-say-black-people." class="section level4">
 <h4>We can see here that the median (middle) age of White and Asian victims is higher than that of others. We can also see that Black victims (and other) tend to have the lowest ages. Also, we can see the age range of White victims is lowest. We can see here that members of certain racial categories are fatally shot at younger ages than those of others. Could this tie into life-expectancy for people in certain racial categories? People of White and Asian decent have higher life-expectancies, than say, Black people.</h4>
@@ -933,7 +981,7 @@ summary(reg.output)</code></pre>
           ylab = &quot;Number of Police Brutality Incidents&quot;, 
           main = &quot;Relationship Between Funding and Brutality in Policing&quot;)</code></pre>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-39-1.png" width="384" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-46-1.png" width="384" /></p>
 <pre class="r"><code>## I used ggscatter because I am more familiar with the funciton, and a line of best fit/regression type can be specified within the function.</code></pre>
 <p>Does the line look like a good fit? Why or why not?</p>
 <p><strong>Yes, this line looks like a good fit. The scatter is a bit wacky since number of incidents only follows whole numbers and the regression does not output that (hence why I mention a log-linear regression above). Our line of best fit follows the regression output linearly, and does a pretty good job, but our scatter seems to resemble part of a parabolic function, so perhaps a exponentional regression would do the data more justice. I also did not run a fitted model.</strong></p>
@@ -942,11 +990,11 @@ summary(reg.output)</code></pre>
 </ol>
 <pre class="r"><code>reg.output &lt;- lm(dat$po.brut ~ dat$funds) 
 plot(reg.output, which=1) ## linearity (residuals vs fitted)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 <pre class="r"><code>plot(reg.output, which=3) ## equal variance (scale vs location)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-40-2.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-47-2.png" width="672" /></p>
 <pre class="r"><code>plot(reg.output, which=2) ## normal pop. (qq)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-40-3.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-47-3.png" width="672" /></p>
 <p><strong>Right off the bat I can see from the residuals vs fitted graph that the red line follows a trend in the average value of the residuals, so there is a discernable trend to them - this assumption fails. The independence assumption also fails due to the pattern of the residuals vs fitted graph. With the scale-location plot we see significant trends in the red line on this plot. This tells me that the residuals (and hence errors) have non-constant variance. So, the assumption that all the errors have the same variance is not true. The QQ plot shows that there is a left-skew to the data, and so the normality assumption fails. The assumptions of linearity are not satisfied, as I predicted above. With more time, I would hope for a better dataset so there is no omitted-variable bias (and the error estimates may be constant). Also, I would write a quadratic log-linear OLS regression, because that seems to better fit the data. For example, perhaps a quadratic on funds can also account for denser populated areas having more funds because of such, but also more incidents because they’re cities.</strong></p>
 <ol start="5" style="list-style-type: lower-alpha">
 <li>Answer the question of interest based on your analysis.</li>

@@ -361,29 +361,114 @@ ggplot(data = mpg) +
 
 ```{r}
 ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy, color = class))
-## different variables will have different colors based off of the class of vehicle. Color could also just be "blue" and then all the points would be that color
+  geom_point(mapping = aes(x = displ, y = hwy, color = "blue"))
+## ?mpg
 ```
+
+__There is a missing parenthesis before color so it's not being put in correctly to the ggplot function when it's set manually/by name.__
+
+__Categorical variables are ones such as type of car/transmission/model name, while variables such as miles per gallon are discrete/continuous.__
+
+
+
+```{r}
+## ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, 
+                           color = hwy, size = cty, shape = displ))
+```
+__We get errors because continuous functions can't be used for these - how is one supposed to set a color based on a variable when there aren't even set variables?__
 
 
 ```{r}
 ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy, size = class))
-## size of the scatter point changes based off of the class of car
+  geom_point(mapping = aes(x = displ, y = hwy, 
+                           color = class, shape = class, size = class))
+## ?geom_point
 ```
+
+__Everything looks all messy and not-uniform because every different type of car has a different size/shape/color.__
+
+__stroke adjusts the thickness of the border for shapes that can take on different colors both inside and outside__
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, colour = displ < 5))
+```
+
+__This changes the color of the scatter dot based off of the value for displacement. So, andy engine with displacement of 5 litres is a different color__
 
 
 ```{r}
-# Left
 ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy, alpha = class))
-
-# Right
-ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy, shape = class))
-
-## alpha controls the transparency of the points while shape controls the shape of them
+  geom_point(mapping = aes(x = displ, y = hwy)) + 
+  facet_wrap(~ cty, nrow = 2)
 ```
+__The subsets of data show up in an interesting pattern because they're not set with each "category" as with a discrete variable__
+
+__3.5.2 - These blanks represent the categories in which drive/class do not overlap so there is nothing to plot here in facet__
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(drv ~ .)
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(. ~ cyl)
+```
+
+__The . makes it so the rows/columns are not faceted__
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) + 
+  facet_wrap(~ class, nrow = 2)
+##?facet_wrap
+```
+
+__Faceting helps clearly split up each "type" into a different graph without the data all overlaying eachother. However, a large dataset with many different types would make many graphs which could get confusing.__
+
+__nrow/ncol show the number of rows and columns. Facet grid doesn't have this because the formula in it should contain two variables, and those variables' overlap is where there are different graphs.__
+
+__3.5.6 - it's easier to visualize the unique variable with all the different subtypes as the rows then having a many short/clustered columns - this creates a more aesthetically appealing graph__
+
+__3.6.1 - I would use geom_point for a line graph, and geom_smooth for the rest of the graphs listed. __
+
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE)
+```
+__This tracks with what I expected because the se default is TRUE, so with it FALSE there is no smoothing occurin and so it looks like a mixed line/scatter chart separated by category.__
+
+__3.6.3 - This tells us whether or not to show the legend in our graph. When it's false, there is no legend. I think it was used earlier in the chapter because it distinguishes which variable is which, and so we know what each color represents.__
+
+__3.6.4 - As mentioned in 3.5.2, the se function tells us whether or not smoothing is in effect. The default is TRUE.__
+
+__3.6.5 - No, these graphs won't look any different because everything specified in the second graph is the default settings for the smooth/point functions.__
+
+
+```{r}
+?stat_summary
+```
+
+__3.7.2 - geom_bar() makes the height of the bar proportional to the number of cases in each group. geom_col() uses stat_identity() and leaves the data as is.__
+
+
+__3.7.3 -__
+
+__3.7.4 -  __
+
+
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, y = after_stat(prop)))
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, fill = color, y = after_stat(prop)))
+```
+__group =1 tells us how to group all the different variables. These two graphs have issues because they're not grouped at all. The first graph has no color in it because it needs the grouping variable to do that. The second has many colors because each category is grouped by default, so each category is grouped within itself additionally.__
+
 
 
 
