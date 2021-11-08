@@ -498,18 +498,16 @@ ggplot(dat, aes(map_id=state, fill=Murder)) +
 </div>
 <div id="read-the-data" class="section level2">
 <h2>Read the data</h2>
-<pre class="r"><code>library(readr)
-dat &lt;- read_csv(&quot;dat.nsduh.small.1.csv&quot;)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   mjage = col_double(),
-##   cigage = col_double(),
-##   iralcage = col_double(),
-##   age2 = col_double(),
-##   sexatract = col_double(),
-##   speakengl = col_double(),
-##   irsex = col_double()
-## )</code></pre>
+<pre class="r"><code>library(readr)</code></pre>
+<pre><code>## Warning: package &#39;readr&#39; was built under R version 3.6.2</code></pre>
+<pre class="r"><code>dat &lt;- read_csv(&quot;dat.nsduh.small.1.csv&quot;)</code></pre>
+<pre><code>## Rows: 171 Columns: 7</code></pre>
+<pre><code>## ── Column specification ───────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## dbl (7): mjage, cigage, iralcage, age2, sexatract, speakengl, irsex</code></pre>
+<pre><code>## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
 <div id="what-are-the-dimensions-of-the-dataset" class="section level2">
 <h2>What are the dimensions of the dataset?</h2>
@@ -622,6 +620,63 @@ barplot(tab.sexgender,
 <pre class="r"><code>sum(dat$irsex[dat$irsex == 2 &amp; (dat$speakengl == 1 | dat$speakengl == 2 | dat$speakengl == 3)])</code></pre>
 <pre><code>## [1] 160</code></pre>
 <p>91 English speakers are male, and 160 are females. All respondents fall into a English-speaking bucket, and so with the unbalanced gender we saw earlier, there are more female English speakers than male.</p>
+<p><span class="math display">\[\\[2in]\]</span> # Assignment 4</p>
+<pre class="r"><code>## install.packages(&quot;tidyverse&quot;)
+library(tidyverse)</code></pre>
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 3.6.2</code></pre>
+<pre><code>## ── Attaching packages ────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.5     ✓ dplyr   1.0.7
+## ✓ tibble  3.1.5     ✓ stringr 1.4.0
+## ✓ tidyr   1.1.4     ✓ forcats 0.5.1
+## ✓ purrr   0.3.4</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.6.2</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.6.2</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 3.6.2</code></pre>
+<pre><code>## Warning: package &#39;purrr&#39; was built under R version 3.6.2</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.6.2</code></pre>
+<pre><code>## Warning: package &#39;forcats&#39; was built under R version 3.6.2</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<p><strong>install/load in tidyverse package (what we need for ggplot functions)</strong></p>
+<pre class="r"><code>ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy))</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-20-1.png" width="672" /> <strong>don’t need to load in mpg dataset because it’s base R. This function starts with a base map, then each argument adds another layer to it - such as geom_point() adding scatters to it, thus creating a scatter plot.</strong></p>
+<pre class="r"><code>ggplot(data = mpg) ## blank template to plot on</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<pre class="r"><code>dim (mpg) ## [1] 234  11</code></pre>
+<pre><code>## [1] 234  11</code></pre>
+<pre class="r"><code>## ?mpg - drv shows us the type of drive train, where f = front-wheel drive, r = rear wheel drive, 4 = 4wd
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = hwy, y = cyl))</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-21-2.png" width="672" /></p>
+<pre class="r"><code>ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = class, y = drv))</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-21-3.png" width="672" /></p>
+<pre class="r"><code>## this isn&#39;t really useful because it shows us the type of car vs the type of drive (front wheel/4 wheel/etc), and each different type of car has a different type of drive so there wouldn&#39;t be any &quot;relationship&quot; to see because it&#39;s all one set thing</code></pre>
+<pre class="r"><code>ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, color = class))</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<pre class="r"><code>## different variables will have different colors based off of the class of vehicle. Color could also just be &quot;blue&quot; and then all the points would be that color</code></pre>
+<pre class="r"><code>ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, size = class))</code></pre>
+<pre><code>## Warning: Using size for a discrete variable is not advised.</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<pre class="r"><code>## size of the scatter point changes based off of the class of car</code></pre>
+<pre class="r"><code># Left
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, alpha = class))</code></pre>
+<pre><code>## Warning: Using alpha for a discrete variable is not advised.</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<pre class="r"><code># Right
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, shape = class))</code></pre>
+<pre><code>## Warning: The shape palette can deal with a maximum of 6 discrete values
+## because more than 6 becomes difficult to discriminate; you have 7.
+## Consider specifying shapes manually if you must have them.</code></pre>
+<pre><code>## Warning: Removed 62 rows containing missing values (geom_point).</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-24-2.png" width="672" /></p>
+<pre class="r"><code>## alpha controls the transparency of the points while shape controls the shape of them</code></pre>
 <p><span class="math display">\[\\[2in]\]</span></p>
 </div>
 </div>
@@ -638,26 +693,16 @@ barplot(tab.sexgender,
 <li><p>Load the data into an R data frame.</p></li>
 </ol>
 <pre class="r"><code>dat &lt;- read_csv(&quot;fatal-police-shootings-data.csv&quot;)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   id = col_double(),
-##   name = col_character(),
-##   date = col_date(format = &quot;&quot;),
-##   manner_of_death = col_character(),
-##   armed = col_character(),
-##   age = col_double(),
-##   gender = col_character(),
-##   race = col_character(),
-##   city = col_character(),
-##   state = col_character(),
-##   signs_of_mental_illness = col_logical(),
-##   threat_level = col_character(),
-##   flee = col_character(),
-##   body_camera = col_logical(),
-##   longitude = col_double(),
-##   latitude = col_double(),
-##   is_geocoding_exact = col_logical()
-## )</code></pre>
+<pre><code>## Rows: 6594 Columns: 17</code></pre>
+<pre><code>## ── Column specification ───────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (9): name, manner_of_death, armed, gender, race, city, state, thre...
+## dbl  (4): id, age, longitude, latitude
+## lgl  (3): signs_of_mental_illness, body_camera, is_geocoding_exact
+## date (1): date</code></pre>
+<pre><code>## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
 <div id="problem-1-10-points" class="section level2">
 <h2>Problem 1 (10 points)</h2>
@@ -713,7 +758,7 @@ View(armed.val)</code></pre>
      xlim = c(0, 100),
      ylim = c(0, 1000),
      xlab = &quot;Ages&quot;)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <div id="the-age-distribution-of-the-sample-does-not-follow-a-normal-distribution-and-is-actually-skewed-right.-this-shows-us-that-more-victims-are-in-that-20-40-age-range.-this-makes-sense-to-me-intuitively-because-i-would-expect-victims-to-be-on-the-younger-side.-we-see-this-database-much-resembles-the-case-of-michael-brown-who-was-18-when-he-was-fatally-killed-by-an-officer-in-the-line-of-duty.-also-since-were-considering-fleeing-and-victims-with-weapons-i-would-expect-younger-people-to-be-more-stealthy-of-movers-and-quicker-with-weapons-since-old-people-dont-move-as-well." class="section level4">
 <h4>The age distribution of the sample does not follow a normal distribution, and is actually skewed right. This shows us that more victims are in that 20-40 age range. This makes sense to me intuitively, because I would expect victims to be on the younger side. We see this database much resembles the case of Michael Brown, who was 18 when he was fatally killed by an officer in the line of duty. Also, since we’re considering “fleeing” and victims with weapons, I would expect younger people to be more stealthy of movers and quicker with weapons, since old people don’t move as well.</h4>
 <ol start="2" style="list-style-type: lower-alpha">
@@ -773,7 +818,7 @@ barplot(tab.fleecam,
         ylab = &quot;Frequency&quot;,
         legend.text = rownames(tab.fleecam),
         beside = FALSE) </code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 <div id="we-can-see-from-this-stacked-barplot-that-there-is-very-little-body-camera-footage-when-victims-are-fleeingnot-regardless.-additionally-there-is-actually-less-body-camera-footage-of-victims-who-were-fleeing-than-those-who-werent.-this-shocks-me-because-i-expect-police-would-turn-on-body-cameras-if-a-civilian-is-literally-moving-away-from-them.-i-expected-there-to-be-less-body-camera-footage-of-non-fleeing-victims-rather-than-the-opposite." class="section level4">
 <h4>We can see from this stacked barplot that there is very little body camera footage when victims are fleeing/not regardless. Additionally, there is actually less body camera footage of victims who were fleeing than those who weren’t. This shocks me, because I expect police would turn on body cameras if a civilian is literally moving away from them. I expected there to be less body camera footage of non-fleeing victims, rather than the opposite.</h4>
 <ol start="2" style="list-style-type: lower-alpha">
@@ -786,7 +831,7 @@ barplot(tab.fleecam,
      ylab=&quot;Age&quot;, 
      xlab=&quot;Race&quot;,
      main = &quot;Boxplot of Age and Race&quot;)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 </div>
 <div id="we-can-see-here-that-the-median-middle-age-of-white-and-asian-victims-is-higher-than-that-of-others.-we-can-also-see-that-black-victims-and-other-tend-to-have-the-lowest-ages.-also-we-can-see-the-age-range-of-white-victims-is-lowest.-we-can-see-here-that-members-of-certain-racial-categories-are-fatally-shot-at-younger-ages-than-those-of-others.-could-this-tie-into-life-expectancy-for-people-in-certain-racial-categories-people-of-white-and-asian-decent-have-higher-life-expectancies-than-say-black-people." class="section level4">
 <h4>We can see here that the median (middle) age of White and Asian victims is higher than that of others. We can also see that Black victims (and other) tend to have the lowest ages. Also, we can see the age range of White victims is lowest. We can see here that members of certain racial categories are fatally shot at younger ages than those of others. Could this tie into life-expectancy for people in certain racial categories? People of White and Asian decent have higher life-expectancies, than say, Black people.</h4>
@@ -835,8 +880,6 @@ library(readr)
 library(knitr)
 library(ggpubr)</code></pre>
 <pre><code>## Warning: package &#39;ggpubr&#39; was built under R version 3.6.2</code></pre>
-<pre><code>## Loading required package: ggplot2</code></pre>
-<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.6.2</code></pre>
 <pre class="r"><code>dat &lt;- read.csv(file = &#39;sim.data.csv&#39;)
 dim(dat)</code></pre>
 <pre><code>## [1] 200   3</code></pre>
@@ -890,7 +933,7 @@ summary(reg.output)</code></pre>
           ylab = &quot;Number of Police Brutality Incidents&quot;, 
           main = &quot;Relationship Between Funding and Brutality in Policing&quot;)</code></pre>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-33-1.png" width="384" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-39-1.png" width="384" /></p>
 <pre class="r"><code>## I used ggscatter because I am more familiar with the funciton, and a line of best fit/regression type can be specified within the function.</code></pre>
 <p>Does the line look like a good fit? Why or why not?</p>
 <p><strong>Yes, this line looks like a good fit. The scatter is a bit wacky since number of incidents only follows whole numbers and the regression does not output that (hence why I mention a log-linear regression above). Our line of best fit follows the regression output linearly, and does a pretty good job, but our scatter seems to resemble part of a parabolic function, so perhaps a exponentional regression would do the data more justice. I also did not run a fitted model.</strong></p>
@@ -899,11 +942,11 @@ summary(reg.output)</code></pre>
 </ol>
 <pre class="r"><code>reg.output &lt;- lm(dat$po.brut ~ dat$funds) 
 plot(reg.output, which=1) ## linearity (residuals vs fitted)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 <pre class="r"><code>plot(reg.output, which=3) ## equal variance (scale vs location)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-34-2.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-40-2.png" width="672" /></p>
 <pre class="r"><code>plot(reg.output, which=2) ## normal pop. (qq)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-34-3.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-40-3.png" width="672" /></p>
 <p><strong>Right off the bat I can see from the residuals vs fitted graph that the red line follows a trend in the average value of the residuals, so there is a discernable trend to them - this assumption fails. The independence assumption also fails due to the pattern of the residuals vs fitted graph. With the scale-location plot we see significant trends in the red line on this plot. This tells me that the residuals (and hence errors) have non-constant variance. So, the assumption that all the errors have the same variance is not true. The QQ plot shows that there is a left-skew to the data, and so the normality assumption fails. The assumptions of linearity are not satisfied, as I predicted above. With more time, I would hope for a better dataset so there is no omitted-variable bias (and the error estimates may be constant). Also, I would write a quadratic log-linear OLS regression, because that seems to better fit the data. For example, perhaps a quadratic on funds can also account for denser populated areas having more funds because of such, but also more incidents because they’re cities.</strong></p>
 <ol start="5" style="list-style-type: lower-alpha">
 <li>Answer the question of interest based on your analysis.</li>

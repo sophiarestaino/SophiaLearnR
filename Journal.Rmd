@@ -331,6 +331,63 @@ sum(dat$irsex[dat$irsex == 2 & (dat$speakengl == 1 | dat$speakengl == 2 | dat$sp
 
 
 $$\\[2in]$$
+# Assignment 4
+
+```{r}
+## install.packages("tidyverse")
+library(tidyverse)
+```
+
+__install/load in tidyverse package (what we need for ggplot functions)__
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy))
+```
+__don't need to load in mpg dataset because it's base R. This function starts with a base map, then each argument adds another layer to it - such as geom_point() adding scatters to it, thus creating a scatter plot.__
+
+
+```{r}
+ggplot(data = mpg) ## blank template to plot on
+dim (mpg) ## [1] 234  11
+## ?mpg - drv shows us the type of drive train, where f = front-wheel drive, r = rear wheel drive, 4 = 4wd
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = hwy, y = cyl))
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = class, y = drv))
+## this isn't really useful because it shows us the type of car vs the type of drive (front wheel/4 wheel/etc), and each different type of car has a different type of drive so there wouldn't be any "relationship" to see because it's all one set thing
+```
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, color = class))
+## different variables will have different colors based off of the class of vehicle. Color could also just be "blue" and then all the points would be that color
+```
+
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, size = class))
+## size of the scatter point changes based off of the class of car
+```
+
+
+```{r}
+# Left
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, alpha = class))
+
+# Right
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, shape = class))
+
+## alpha controls the transparency of the points while shape controls the shape of them
+```
+
+
+
+$$\\[2in]$$
 
 # Exam 1
 
