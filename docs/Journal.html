@@ -746,6 +746,16 @@ bar + coord_polar()</code></pre>
 <p><strong>3.9.2 - labs makes sure axis/legend labels always display the full variable name. </strong></p>
 <p><strong>3.9.3 - coord map simply maps the information, while quickmap sets the aspect ratio correctly in addition to mapping, which is very important for geographic information.</strong></p>
 <p><strong>3.9.4 - This shows us the relationship between city/highway miles per gallon with respect to different types of cars. Coord_fixed fixes the aspect ratio, and makes sure that one unit on the x-axis is the same length as one unit on the y-axis (with the default setting used here). Geom_abline adds a reference line to the plot - the default setting is used here, so we’re not basing the abline off of the data in the scatter.</strong></p>
+<pre class="r"><code>ggplot(mpg, aes(displ, hwy)) +
+  geom_point(aes(colour = class)) +
+  geom_smooth(se = FALSE) +
+  labs(
+    x = &quot;Engine displacement (L)&quot;,
+    y = &quot;Highway fuel economy (mpg)&quot;,
+    colour = &quot;Car type&quot;
+  )</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Journal_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 <p><span class="math display">\[\\[2in]\]</span></p>
 </div>
 </div>
@@ -827,7 +837,7 @@ View(armed.val)</code></pre>
      xlim = c(0, 100),
      ylim = c(0, 1000),
      xlab = &quot;Ages&quot;)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
 <div id="the-age-distribution-of-the-sample-does-not-follow-a-normal-distribution-and-is-actually-skewed-right.-this-shows-us-that-more-victims-are-in-that-20-40-age-range.-this-makes-sense-to-me-intuitively-because-i-would-expect-victims-to-be-on-the-younger-side.-we-see-this-database-much-resembles-the-case-of-michael-brown-who-was-18-when-he-was-fatally-killed-by-an-officer-in-the-line-of-duty.-also-since-were-considering-fleeing-and-victims-with-weapons-i-would-expect-younger-people-to-be-more-stealthy-of-movers-and-quicker-with-weapons-since-old-people-dont-move-as-well." class="section level4">
 <h4>The age distribution of the sample does not follow a normal distribution, and is actually skewed right. This shows us that more victims are in that 20-40 age range. This makes sense to me intuitively, because I would expect victims to be on the younger side. We see this database much resembles the case of Michael Brown, who was 18 when he was fatally killed by an officer in the line of duty. Also, since we’re considering “fleeing” and victims with weapons, I would expect younger people to be more stealthy of movers and quicker with weapons, since old people don’t move as well.</h4>
 <ol start="2" style="list-style-type: lower-alpha">
@@ -887,7 +897,7 @@ barplot(tab.fleecam,
         ylab = &quot;Frequency&quot;,
         legend.text = rownames(tab.fleecam),
         beside = FALSE) </code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 <div id="we-can-see-from-this-stacked-barplot-that-there-is-very-little-body-camera-footage-when-victims-are-fleeingnot-regardless.-additionally-there-is-actually-less-body-camera-footage-of-victims-who-were-fleeing-than-those-who-werent.-this-shocks-me-because-i-expect-police-would-turn-on-body-cameras-if-a-civilian-is-literally-moving-away-from-them.-i-expected-there-to-be-less-body-camera-footage-of-non-fleeing-victims-rather-than-the-opposite." class="section level4">
 <h4>We can see from this stacked barplot that there is very little body camera footage when victims are fleeing/not regardless. Additionally, there is actually less body camera footage of victims who were fleeing than those who weren’t. This shocks me, because I expect police would turn on body cameras if a civilian is literally moving away from them. I expected there to be less body camera footage of non-fleeing victims, rather than the opposite.</h4>
 <ol start="2" style="list-style-type: lower-alpha">
@@ -900,7 +910,7 @@ barplot(tab.fleecam,
      ylab=&quot;Age&quot;, 
      xlab=&quot;Race&quot;,
      main = &quot;Boxplot of Age and Race&quot;)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
 </div>
 <div id="we-can-see-here-that-the-median-middle-age-of-white-and-asian-victims-is-higher-than-that-of-others.-we-can-also-see-that-black-victims-and-other-tend-to-have-the-lowest-ages.-also-we-can-see-the-age-range-of-white-victims-is-lowest.-we-can-see-here-that-members-of-certain-racial-categories-are-fatally-shot-at-younger-ages-than-those-of-others.-could-this-tie-into-life-expectancy-for-people-in-certain-racial-categories-people-of-white-and-asian-decent-have-higher-life-expectancies-than-say-black-people." class="section level4">
 <h4>We can see here that the median (middle) age of White and Asian victims is higher than that of others. We can also see that Black victims (and other) tend to have the lowest ages. Also, we can see the age range of White victims is lowest. We can see here that members of certain racial categories are fatally shot at younger ages than those of others. Could this tie into life-expectancy for people in certain racial categories? People of White and Asian decent have higher life-expectancies, than say, Black people.</h4>
@@ -1002,7 +1012,7 @@ summary(reg.output)</code></pre>
           ylab = &quot;Number of Police Brutality Incidents&quot;, 
           main = &quot;Relationship Between Funding and Brutality in Policing&quot;)</code></pre>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-48-1.png" width="384" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-49-1.png" width="384" /></p>
 <pre class="r"><code>## I used ggscatter because I am more familiar with the funciton, and a line of best fit/regression type can be specified within the function.</code></pre>
 <p>Does the line look like a good fit? Why or why not?</p>
 <p><strong>Yes, this line looks like a good fit. The scatter is a bit wacky since number of incidents only follows whole numbers and the regression does not output that (hence why I mention a log-linear regression above). Our line of best fit follows the regression output linearly, and does a pretty good job, but our scatter seems to resemble part of a parabolic function, so perhaps a exponentional regression would do the data more justice. I also did not run a fitted model.</strong></p>
@@ -1011,11 +1021,11 @@ summary(reg.output)</code></pre>
 </ol>
 <pre class="r"><code>reg.output &lt;- lm(dat$po.brut ~ dat$funds) 
 plot(reg.output, which=1) ## linearity (residuals vs fitted)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 <pre class="r"><code>plot(reg.output, which=3) ## equal variance (scale vs location)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-49-2.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-50-2.png" width="672" /></p>
 <pre class="r"><code>plot(reg.output, which=2) ## normal pop. (qq)</code></pre>
-<p><img src="Journal_files/figure-html/unnamed-chunk-49-3.png" width="672" /></p>
+<p><img src="Journal_files/figure-html/unnamed-chunk-50-3.png" width="672" /></p>
 <p><strong>Right off the bat I can see from the residuals vs fitted graph that the red line follows a trend in the average value of the residuals, so there is a discernable trend to them - this assumption fails. The independence assumption also fails due to the pattern of the residuals vs fitted graph. With the scale-location plot we see significant trends in the red line on this plot. This tells me that the residuals (and hence errors) have non-constant variance. So, the assumption that all the errors have the same variance is not true. The QQ plot shows that there is a left-skew to the data, and so the normality assumption fails. The assumptions of linearity are not satisfied, as I predicted above. With more time, I would hope for a better dataset so there is no omitted-variable bias (and the error estimates may be constant). Also, I would write a quadratic log-linear OLS regression, because that seems to better fit the data. For example, perhaps a quadratic on funds can also account for denser populated areas having more funds because of such, but also more incidents because they’re cities.</strong></p>
 <ol start="5" style="list-style-type: lower-alpha">
 <li>Answer the question of interest based on your analysis.</li>
