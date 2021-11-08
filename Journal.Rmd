@@ -469,7 +469,17 @@ ggplot(data = diamonds) +
 ```
 __group =1 tells us how to group all the different variables. These two graphs have issues because they're not grouped at all. The first graph has no color in it because it needs the grouping variable to do that. The second has many colors because each category is grouped by default, so each category is grouped within itself additionally.__
 
+```{r}
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) + 
+  geom_point()
+```
 
+__Right now, values are being rounded and many points overlap (so it looks like the observations aren't all being plotted). This could be improved with position = "jitter", which adds random noise to each variable, and helps solve the overplotting issue shown here. __
+
+
+__3.8.2 - different widths/heights can be called into jittering. Also, position adjustments can be made, as well as statistical transformations. __
+
+__3.8.3 - Geom count tells us how many observations are at each location. This doesn't solve an overplotting issue (visually), but helps describe what's occurring in the graph. Geom jitter visually demonstrates overplotting by adding the randomness. __
 
 
 $$\\[2in]$$
