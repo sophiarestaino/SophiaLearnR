@@ -329,8 +329,140 @@ sum(dat$irsex[dat$irsex == 2 & (dat$speakengl == 1 | dat$speakengl == 2 | dat$sp
 ```
 91 English speakers are male, and 160 are females. All respondents fall into a English-speaking bucket, and so with the unbalanced gender we saw earlier, there are more female English speakers than male. 
 
+$$\\[2in]$$
+
+# Assignment 3
+
+
+**Collaborators: Natalie Yang**.
+
+This assignment is due on Canvas on Wednesday 10/27/2021 before class, at 10:15 am. Include the name of anyone with whom you collaborated at the top of the assignment.
+
+Submit your responses as either an HTML file or a PDF file on Canvas. Also, please upload it to your website.
+
+Save the file (found on Canvas) crime_simple.txt to the same folder as this file (your Rmd file for Assignment 3).
+
+Load the data.
+```{r}
+## setwd("~/Desktop/senior year/crim 250/assignments/assignment 3")
+## install.packages("ggpubr")
+library(readr)
+library(knitr)
+library(ggpubr)
+dat.crime <- read_delim("crime_simple.txt", delim = "\t")
+```
+
+This is a dataset from a textbook by Brian S. Everitt about crime in the US in 1960. The data originate from the Uniform Crime Report of the FBI and other government sources. The data for 47 states of the USA are given. 
+
+Here is the codebook:
+
+R: Crime rate: # of offenses reported to police per million population
+
+Age: The number of males of age 14-24 per 1000 population
+
+S: Indicator variable for Southern states (0 = No, 1 = Yes)
+
+Ed: Mean of years of schooling x 10 for persons of age 25 or older
+
+Ex0: 1960 per capita expenditure on police by state and local government
+
+Ex1: 1959 per capita expenditure on police by state and local government
+
+LF: Labor force participation rate per 1000 civilian urban males age 14-24
+
+M: The number of males per 1000 females
+
+N: State population size in hundred thousands
+
+NW: The number of non-whites per 1000 population
+
+U1: Unemployment rate of urban males per 1000 of age 14-24
+
+U2: Unemployment rate of urban males per 1000 of age 35-39
+
+W: Median value of transferable goods and assets or family income in tens of $
+
+X: The number of families per 1000 earning below 1/2 the median income
+
+
+We are interested in checking whether the reported crime rate (# of offenses reported to police per million population) and the average education (mean number of years of schooling for persons of age 25 or older) are related. 
+
+
+1. How many observations are there in the dataset? To what does each observation correspond?
+
+```{r}
+dim(dat.crime)
+```
+
+The number of rows (47) correspond to the states in the survey, and the 14 columns relate to each letter in the codebook for these answers. So, the 5th row, column U1 would show the Unemployment rate of urban males per 1000 of age 14-24 in that state. 
+
+2. Draw a scatterplot of the two variables. Calculate the correlation between the two variables. Can you come up with an explanation for this relationship?
+
+```{r, fig.width=6, fig.height=4}
+cor(dat.crime$Ed, dat.crime$U2,  method = "pearson", use = "complete.obs")
+
+ggscatter(dat.crime, x = "Ed", y = "U2", 
+          add = "reg.line", cor.method = "pearson",
+          xlab = "Mean of years of schooling", ylab = "Unemployment rate")
+```
+
+
+The correlation function shows a small negative correlation between mean years of school and education. So, as mean years of school increases, the unemployment level decreases. The scatter plot visualizes this relationship, and the regline shows that it is a small level of correlation. 
+
+3. Regress reported crime rate (y) on average education (x) and call this linear model `crime.lm` and write the summary of the regression by using this code, which makes it look a little nicer `{r, eval=FALSE} kable(summary(crime.lm)$coef, digits = 2)`.
+
+```{r}
+crime.lm <- lm(R ~ Ed, data = dat.crime)
+summary(crime.lm)
+```
+
+4. Are the four assumptions of linear regression satisfied? To answer this, draw the relevant plots. (Write a maximum of one sentence per assumption.)
+
+```{r} 
+
+plot(dat.crime$Ed, dat.crime$R, pch = 16, cex = 1.3, frame = F,   
+     main = "Crime Rate and Education Relationship",
+     xlab = "Mean of years of schooling x 10 for persons of age 25 or older",
+     ylab = "# of offenses reported to police per million population")
+
+abline(crime.lm, h = 0, lty="dashed")
+
+plot(crime.lm, which=1)
+
+plot(crime.lm, which=3)
+
+plot(crime.lm, which=2)
+
+```
+
+__The linearity assumption is satisfied because the scatterplot ab-line is straight, and the red line from the Residuals vs Fitted graph is flat, which shows us that there is no discernible non-linear trend to the residuals. The independence assumption is satisfied because there are no patterns in the scatter when graphing against Ed or the residuals. The scale-location plot shows us a pretty flat line, which means the errors have constant variance, and the assumption is satisfied. The normality assumption is satisfied, because the QQ plot graph has its residuals mostly following the line, which means there's a normal distribution (follows the population).__ 
+
+5. Is the relationship between reported crime and average education statistically significant? Report the estimated coefficient of the slope, the standard error, and the p-value. What does it mean for the relationship to be statistically significant?
+
+__I am using the summary(crime.lm) output from problem 3 to guide my answers. The relationship between reported crime and average education is statistically significant because the p-value is less than .05 (and the software marks such). The p-value is 0.0269. The standard error is 0.4878, which is less than 1.96. The coefficient of the slope is -27.3967. When a relationship is statistically significant, we can reject the null hypothesis at 95% confidence.__
+
+6. How are reported crime and average education related? In other words, for every unit increase in average education, how does reported crime rate change (per million) per state?
+
+__Crime and education are tied, because for each unit increase in average education, the crime rate/million people increases by 1.1161 units. One would assume that a population with more education would have less crime in it, but that is not the case that this regression shows. __
+
+7. Can you conclude that if individuals were to receive more education, then crime will be reported more often? Why or why not?
+
+__This conclusion cannot be drawn. The wording in the code book does not distinguish between crime rate and number of crimes reported. Also, our regression is way to simple to conclude that just education increases crime reported - it definitely has omitted variable bias in it. This data is not a time-series - we aren't looking at the sample location over periods of time as education has changed - how would we know that there are no differences in crime based on state? __
+
+
+
 
 $$\\[2in]$$
+
+
+
+
+
+$$\\[2in]$$
+
+$$\\[2in]$$
+
+
 # Assignment 4
 
 ```{r}
@@ -717,6 +849,8 @@ c. Regarding missing values in problem 4, do you see any? If so, do you think th
 
 Yes, there are missing values in problem 4. I'm sure there are many other things that are missing from the data. All these events are unique of eachother and it's hard to do EDA when there are so many specific values/cases, and its easier to put them all in an Other bucket. 
 
+$$\\[2in]$$
+
 
 $$\\[2in]$$
 # Exam 2
@@ -803,6 +937,8 @@ Describe the dataset. Considering our lecture on data ethics, what concerns do y
 
 __I'm not sure if the anonymity of the police department names are enough. It's very easy to look up police records/court cases regarding police brutality, so those numbers can be picked out. Also, as civically engaged members of society, we are able to look up public information on how our tax dollars are spent. So, finding the information on police department funding is also not difficult. If you looked at that and number of incidents, it's not too difficult to find out which actual police department each number represents. There also may be bias in police-recorded data, because departments probably don't want to admit that one of their own inflicted violence on a person. I also have concerns that people will use this data to predict police-brutality incidents, and will argue to change dpeartment funding because of such, and also as an argument that police-brutality happens normally, since each department had at least 14 incidents in one year. __
 
+
+$$\\[2in]$$
 
 
 

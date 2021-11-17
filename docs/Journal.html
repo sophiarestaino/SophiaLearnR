@@ -620,7 +620,14 @@ barplot(tab.sexgender,
 <pre class="r"><code>sum(dat$irsex[dat$irsex == 2 &amp; (dat$speakengl == 1 | dat$speakengl == 2 | dat$speakengl == 3)])</code></pre>
 <pre><code>## [1] 160</code></pre>
 <p>91 English speakers are male, and 160 are females. All respondents fall into a English-speaking bucket, and so with the unbalanced gender we saw earlier, there are more female English speakers than male.</p>
-<p><span class="math display">\[\\[2in]\]</span> # Assignment 4</p>
+<p><span class="math display">\[\\[2in]\]</span></p>
+<p><span class="math display">\[\\[2in]\]</span></p>
+</div>
+</div>
+</div>
+</div>
+<div id="assignment-4" class="section level1">
+<h1>Assignment 4</h1>
 <pre class="r"><code>## install.packages(&quot;tidyverse&quot;)
 library(tidyverse)</code></pre>
 <pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 3.6.2</code></pre>
@@ -793,9 +800,6 @@ ggplot(mpg, aes(displ, hwy)) +
 <pre class="r"><code>## ?annotate</code></pre>
 <p><strong>adds small annotations from vectors - the variables aren’t from the data frame, so a tibble isn’t necessary. This is especially sueful for adding small annotations or if you already have vectors and don’t want to make a dataframe.</strong></p>
 <p><span class="math display">\[\\[2in]\]</span></p>
-</div>
-</div>
-</div>
 </div>
 <div id="exam-1" class="section level1">
 <h1>Exam 1</h1>
@@ -970,6 +974,7 @@ head(mydates)
 <li>Regarding missing values in problem 4, do you see any? If so, do you think that’s all that’s missing from the data?</li>
 </ol>
 <p>Yes, there are missing values in problem 4. I’m sure there are many other things that are missing from the data. All these events are unique of eachother and it’s hard to do EDA when there are so many specific values/cases, and its easier to put them all in an Other bucket.</p>
+<p><span class="math display">\[\\[2in]\]</span></p>
 <p><span class="math display">\[\\[2in]\]</span> # Exam 2</p>
 </div>
 </div>
@@ -1072,6 +1077,7 @@ plot(reg.output, which=1) ## linearity (residuals vs fitted)</code></pre>
 <h2>Problem 3: Data ethics (10 points)</h2>
 <p>Describe the dataset. Considering our lecture on data ethics, what concerns do you have about the dataset? Once you perform your analysis to answer the question of interest using this dataset, what concerns might you have about the results?</p>
 <p><strong>I’m not sure if the anonymity of the police department names are enough. It’s very easy to look up police records/court cases regarding police brutality, so those numbers can be picked out. Also, as civically engaged members of society, we are able to look up public information on how our tax dollars are spent. So, finding the information on police department funding is also not difficult. If you looked at that and number of incidents, it’s not too difficult to find out which actual police department each number represents. There also may be bias in police-recorded data, because departments probably don’t want to admit that one of their own inflicted violence on a person. I also have concerns that people will use this data to predict police-brutality incidents, and will argue to change dpeartment funding because of such, and also as an argument that police-brutality happens normally, since each department had at least 14 incidents in one year. </strong></p>
+<p><span class="math display">\[\\[2in]\]</span></p>
 </div>
 </div>
 
