@@ -329,7 +329,10 @@ sum(dat$irsex[dat$irsex == 2 & (dat$speakengl == 1 | dat$speakengl == 2 | dat$sp
 ```
 91 English speakers are male, and 160 are females. All respondents fall into a English-speaking bucket, and so with the unbalanced gender we saw earlier, there are more female English speakers than male. 
 
+
+
 $$\\[2in]$$
+
 
 # Assignment 3
 
@@ -457,8 +460,6 @@ $$\\[2in]$$
 
 
 
-
-$$\\[2in]$$
 
 $$\\[2in]$$
 
@@ -853,6 +854,8 @@ $$\\[2in]$$
 
 
 $$\\[2in]$$
+
+
 # Exam 2
 
 ## Instructions
